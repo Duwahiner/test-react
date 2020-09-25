@@ -25,6 +25,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-svg": "^11.0.40",
     "rebass": "^4.0.7"
   },
   "pre-commit": [

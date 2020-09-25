@@ -4,12 +4,12 @@ import styled from '@emotion/styled'
 import { useTheme } from 'emotion-theming'
 
 const Title = styled.h1`
-  font-family: 'AeonikBlack';
+  font-family: AeonikBlack;
   font-size: 50px;
   color: ${props => props.theme.colors.title}
 `
 const Description = styled.span`
-  font-family: 'Aeonik';
+  font-family: Aeonik;
   font-size: 20px;
   color: ${props => props.theme.colors.primary}
 `

@@ -1,5 +1,5 @@
 import React from 'react'
-import PageHome from '../src/components'
+import PageHome from '../src/components/PageHome'
 import { Flex } from 'rebass'
 
 const Home = (props) => {
