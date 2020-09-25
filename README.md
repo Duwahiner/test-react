@@ -3,7 +3,7 @@ Test React
 Creando componentes con react.
 
 ## Link para ver en Vivo
-* [Node.js](https://test-react-nine.vercel.app/) - Visita el sitio
+* [Test React](https://test-react-nine.vercel.app/) - Visita el sitio
 -----------------------------------------------------------------------------------------------------
 
 ## Asegúrese de instalar Node.js y NPM O Yarn si no los tiene instalado en la pc.
