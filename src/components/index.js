@@ -24,7 +24,7 @@ const PageHome = (props) => {
       height={theme.viewport.height}
     >
       <Box>
-        <Title> Test React app </Title>
+        <Title> Test React components app </Title>
       </Box>
       <Box mt={[2]}>
         <Description> Creando componentes con react con renderizado del servidor. </Description>
