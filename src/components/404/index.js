@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Head from 'next/head'
 import { Flex, Box } from 'rebass'
 import styled from '@emotion/styled'
 import { useTheme } from 'emotion-theming'
@@ -43,6 +44,9 @@ const NotFound404 = (props) => {
       height={theme.viewport.height}
       bg='background404'
     >
+      <Head>
+        <title> Error 404 </title>
+      </Head>
       <Box>
         <Title> Error, esta página no existe </Title>
       </Box>

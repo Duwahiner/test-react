@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head'
 import { Flex, Box } from 'rebass'
 import styled from '@emotion/styled'
 import { useTheme } from 'emotion-theming'
@@ -23,6 +24,9 @@ const PageHome = (props) => {
       alignItems='center'
       height={theme.viewport.height}
     >
+      <Head>
+        <title> Inicio </title>
+      </Head>
       <Box>
         <Title> Test React components app </Title>
       </Box>
