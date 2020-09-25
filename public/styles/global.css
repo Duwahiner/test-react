@@ -1,0 +1,14 @@
+@font-face{
+    font-family: AeonikBlack;
+    src: url("/fonts/aeonik-black.woff");
+}
+
+@font-face{
+font-family: AeonikBold;
+src: url("/fonts/aeonik-bold.woff");
+}
+
+@font-face{
+    font-family: Aeonik;
+    src: url("/fonts/aeonik-regular.woff");
+}
