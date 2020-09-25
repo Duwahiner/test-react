@@ -26,7 +26,7 @@ export default class MyDocument extends Document {
           <meta property='og:type' content='website' />
           <meta name='og:title' property='og:title' content='' />
           <meta name='og:description' property='og:description' content='' />
-          <link rel='icon' type='image/png' href='favicon.ico' />
+          <link rel='icon' type='image/png' href='favicon.png' />
           <meta name='viewport' content='width=device-width, initial-scale=1.0' />
           <meta httpEquiv='X-UA-Compatible' content='ie=edge' />
           <link rel='stylesheet' type='text/css' href='/styles/normalize.css' />
