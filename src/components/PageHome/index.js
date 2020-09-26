@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import { Flex } from 'rebass'
-import fetch from 'isomorphic-fetch'
 import ModalUser from '../ModalUser'
 import ModalUserCreate from '../ModalUserCreate'
 import ModalUserEdit from '../ModalUserEdit'
 import ModalUserRemove from '../ModalUserRemove'
 import Users from '../Users'
+import { getUser } from '../api'
 
 const PageHome = (props) => {
   const [miUser, setMiUser] = useState([])
@@ -18,9 +18,8 @@ const PageHome = (props) => {
 
   useEffect(() => {
     const get = async () => {
-      const res = await fetch('https://jsonplaceholder.typicode.com/users/')
-      const json = await res.json()
-      setMiUser(json)
+      const users = await getUser()
+      setMiUser(users)
     }
     get()
   }, [])
@@ -51,9 +50,24 @@ const PageHome = (props) => {
           setFilterUser={setFilterUser}
 
         />)}
-      {showCreate && (<ModalUserCreate setShow={setShowCreate} show={showCreate} filterUser={filterUser} />)}
-      {showEdit && (<ModalUserEdit setShow={setShowEdit} show={showEdit} filterUser={filterUser} />)}
-      {showRemove && (<ModalUserRemove setShow={setShowRemove} show={showRemove} filterUser={filterUser} />)}
+      {showCreate && (
+        <ModalUserCreate
+          setShow={setShowCreate}
+          show={showCreate}
+          filterUser={filterUser}
+        />)}
+      {showEdit && (
+        <ModalUserEdit
+          setShow={setShowEdit}
+          show={showEdit}
+          filterUser={filterUser}
+        />)}
+      {showRemove && (
+        <ModalUserRemove
+          setShow={setShowRemove}
+          show={showRemove}
+          filterUser={filterUser}
+        />)}
     </Flex>
   )
 }
