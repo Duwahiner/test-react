@@ -12,8 +12,9 @@ export default {
     shadows: 'rgba(32, 139, 185, 0.3)',
     link: '#29aede',
     text: '#ffffff',
-    title: '#0000000',
-    background404: '#131415'
+    title: '#000000',
+    background404: '#131415',
+    detail: '#ABABAB'
 
   },
   space: [

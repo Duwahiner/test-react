@@ -19,9 +19,10 @@ Creando componentes con react.
     npm install
     yarn add
 
-## Una vez haya clonado el proyecto, ejecútelo:
+## Una vez haya instaldo las dependencias del proyecto, ejecúte:
     npm run dev
     yarn dev
+    Abra el navegador y escriba: http://localhost:3000
 
 ## Despliegue a producción.
     Primer paso ->> npm run build
@@ -34,7 +35,7 @@ Creando componentes con react.
 * [Despliegue](https://nextjs.org/docs/deployment) - Link opciones de despliegue
 -----------------------------------------------------------------------------------------------------
 
-## Bien ahora disfruta de la app Test React:
+## Bien hecho, disfruta de la app Test React:
     Gracias por la paciencia
 
 ## License
