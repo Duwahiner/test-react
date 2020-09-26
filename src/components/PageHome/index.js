@@ -43,7 +43,7 @@ const ButtonPage = styled.a`
 
 const PageHome = (props) => {
   const [miUser, setMiUser] = useState([])
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(false)
 
   useEffect(() => {
     const get = async () => {
