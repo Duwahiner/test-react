@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Flex, Box } from 'rebass'
 import styled from '@emotion/styled'
 import { useTheme } from 'emotion-theming'
 import { ReactSVG } from 'react-svg'
+import { v1 as createID } from 'uuid'
 
 const Title = styled.h1`
   font-family: AeonikBlack;
@@ -94,9 +95,20 @@ const InputText = styled.input`
     font-size: 18px;
   }
 `
-const ModalUserCreate = ({ show, setShow, filterUser }) => {
+const ModalUserCreate = ({ show, setShow, filterUser, handleCreateUser }) => {
   const theme = useTheme()
-  // const user = Object.assign({}, ...filterUser)
+  const [user, setUser] = useState(Object.assign({}, {
+    name: '',
+    email: '',
+    phone: '',
+    userId: createID().slice(0, 5)
+  }))
+
+  const handleOnChange = (event) => {
+    const key = event.target.name
+    const value = event.target.value
+    setUser({ ...user, [key]: value })
+  }
 
   return (
     <Flex
@@ -159,15 +171,40 @@ const ModalUserCreate = ({ show, setShow, filterUser }) => {
             flexDirection='column'
             py={4}
           >
-            <Box width={1 / 1.4}> <InputText type='text' placeholder='Nombre completo' /> </Box>
-            <Box width={1 / 1.4}> <InputText type='email' placeholder='Correo' /> </Box>
-            <Box width={1 / 1.4}> <InputText type='tel' placeholder='Movil' /> </Box>
+            <Box width={1 / 1.4}>
+              <InputText
+                type='text'
+                name='name'
+                placeholder='Nombre completo'
+                onChange={(event) => handleOnChange(event)}
+              />
+            </Box>
+            <Box width={1 / 1.4}>
+              <InputText
+                type='email'
+                name='email'
+                placeholder='Correo'
+                onChange={(event) => handleOnChange(event)}
+              />
+            </Box>
+            <Box width={1 / 1.4}>
+              <InputText
+                type='tel'
+                name='phone'
+                placeholder='Movil'
+                onChange={(event) => handleOnChange(event)}
+              />
+            </Box>
           </Flex>
 
           <Flex flex='none' width={1} bg='' height='auto'>
             <Flex flex='auto' justifyContent='center' alignItems={['center']} flexDirection={['column', 'row']}>
               <Button
-                onClick={() => setShow(!show)}
+                onClick={() => {
+                  if (user.name !== '' && user.email !== '' && user.phone !== '') {
+                    handleCreateUser(user)
+                  }
+                }}
               >
                 <Box mr='6px'> Listo </Box>
               </Button>

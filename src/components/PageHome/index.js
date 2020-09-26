@@ -6,7 +6,7 @@ import ModalUserCreate from '../ModalUserCreate'
 import ModalUserEdit from '../ModalUserEdit'
 import ModalUserRemove from '../ModalUserRemove'
 import Users from '../Users'
-import { getUser } from '../api'
+import { getUser, postUser, putUser, deleteUser } from '../api'
 
 const PageHome = (props) => {
   const [miUser, setMiUser] = useState([])
@@ -23,6 +23,55 @@ const PageHome = (props) => {
     }
     get()
   }, [])
+
+  const handleCreateUser = (newUser) => {
+    const post = async () => {
+      const users = await postUser(newUser)
+      if (typeof users === 'object') {
+        const updateUsers = miUser.concat([{ ...users, id: users.userId }])
+        setMiUser(updateUsers)
+        setShow(!show)
+        setShowCreate(!showCreate)
+      }
+    }
+    post()
+  }
+
+  const handleUpdateUser = (newUser, id) => {
+    const post = async () => {
+      const users = await putUser(newUser, id)
+      if (typeof users === 'object') {
+        const updateUsers = miUser.map((user) => {
+          if (user.id === id) {
+            return { ...user, name: users.name, email: users.email, phone: users.phone }
+          } else {
+            return user
+          }
+        })
+        setMiUser(updateUsers)
+        setShowEdit(!showEdit)
+        setShow(!show)
+      }
+    }
+    post()
+  }
+
+  const handleRemoveUser = (newUser) => {
+    const deleteUs = async () => {
+      const users = await deleteUser(newUser.id)
+      if (typeof users === 'object') {
+        const updateUsers = miUser.filter((user) => {
+          if (user.id !== newUser.id) {
+            return user
+          }
+        })
+        setMiUser(updateUsers)
+        setShowRemove(!showRemove)
+        setShow(!show)
+      }
+    }
+    deleteUs()
+  }
 
   return (
     <Flex
@@ -55,18 +104,21 @@ const PageHome = (props) => {
           setShow={setShowCreate}
           show={showCreate}
           filterUser={filterUser}
+          handleCreateUser={handleCreateUser}
         />)}
       {showEdit && (
         <ModalUserEdit
           setShow={setShowEdit}
           show={showEdit}
           filterUser={filterUser}
+          handleUpdateUser={handleUpdateUser}
         />)}
       {showRemove && (
         <ModalUserRemove
           setShow={setShowRemove}
           show={showRemove}
           filterUser={filterUser}
+          handleRemoveUser={handleRemoveUser}
         />)}
     </Flex>
   )

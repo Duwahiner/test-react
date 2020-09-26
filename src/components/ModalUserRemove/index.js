@@ -60,9 +60,9 @@ const ButtonSecondary = styled.button`
   }
 `
 
-const ModalUserRemove = ({ show, setShow, filterUser }) => {
+const ModalUserRemove = ({ show, setShow, filterUser, handleRemoveUser }) => {
   const theme = useTheme()
-  // const user = Object.assign({}, ...filterUser)
+  const user = Object.assign({}, ...filterUser)
 
   return (
     <Flex
@@ -128,7 +128,7 @@ const ModalUserRemove = ({ show, setShow, filterUser }) => {
             <Flex flex='none' width={1} bg='' height='auto'>
               <Flex flex='auto' justifyContent='center' alignItems={['center']} flexDirection={['column', 'row']}>
                 <Button
-                  onClick={() => setShow(!show)}
+                  onClick={() => handleRemoveUser(user)}
                 >
                   <Box mr='6px'> Listo </Box>
                 </Button>

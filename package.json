@@ -26,7 +26,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-svg": "^11.0.40",
-    "rebass": "^4.0.7"
+    "rebass": "^4.0.7",
+    "uuid": "^8.3.0"
   },
   "pre-commit": [
     "lint"

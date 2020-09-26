@@ -6,7 +6,7 @@ export const getUser = async () => {
   return users
 }
 
-export const getPost = async (nweUser) => {
+export const postUser = async (nweUser) => {
   const res = await fetch(
     'https://jsonplaceholder.typicode.com/posts', {
       method: 'POST',
@@ -22,7 +22,7 @@ export const getPost = async (nweUser) => {
   return users
 }
 
-export const getPut = async (newUser, id) => {
+export const putUser = async (newUser, id) => {
   const res = await fetch(
         `https://jsonplaceholder.typicode.com/posts/${id}`, {
           method: 'PUT',
@@ -38,7 +38,7 @@ export const getPut = async (newUser, id) => {
   return users
 }
 
-export const getDelete = async (id) => {
+export const deleteUser = async (id) => {
   const res = await fetch(
         `https://jsonplaceholder.typicode.com/posts/${id}`, {
           method: 'DELETE'
