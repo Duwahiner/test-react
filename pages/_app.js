@@ -18,6 +18,10 @@ const MyApp = ({ Component, pageProps }) => {
       <Global
         styles={
           css`
+            body {
+              background-color: #F5F5F5
+            }
+            
             body::-webkit-scrollbar {
               display: block;
               background: #F6F6F6;

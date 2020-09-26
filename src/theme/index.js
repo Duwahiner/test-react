@@ -9,12 +9,16 @@ export default {
     secondary: '#F76D78',
     secondaryDark: '#D15C66',
     background: '#ffffff',
-    shadows: 'rgba(32, 139, 185, 0.3)',
+    shadows: 'rgba(188, 188, 188, 0.4)',
     link: '#29aede',
     text: '#ffffff',
     title: '#000000',
     background404: '#131415',
-    detail: '#ABABAB'
+    detail: '#ABABAB',
+    backgroundModal: 'rgba(19, 20, 21, 0.9)',
+    backgroundModalSecondary: 'rgba(19, 20, 21, 1)',
+    backgroundItemsUsers: '#FCFCFC',
+    borderColor: '#F1F1F1'
 
   },
   space: [
