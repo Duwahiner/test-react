@@ -6,7 +6,7 @@ import ModalUserCreate from '../ModalUserCreate'
 import ModalUserEdit from '../ModalUserEdit'
 import ModalUserRemove from '../ModalUserRemove'
 import Users from '../Users'
-import { getUser, postUser, putUser, deleteUser } from '../api'
+import { getUser, postUser, putUser, deleteUser } from '../../api'
 
 const PageHome = (props) => {
   const [miUser, setMiUser] = useState([])
