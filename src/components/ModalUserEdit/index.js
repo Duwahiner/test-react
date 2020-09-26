@@ -144,7 +144,7 @@ const ModalUserEdit = ({ show, setShow, filterUser, handleUpdateUser }) => {
           >
             <Flex flex='none'>
               <Flex ml={[3]} flexDirection='row' justifyContent='center' alignItems='center'>
-                <Box mr={10}> <Title> Editar nuevo contacto </Title> </Box>
+                <Box mr={10}> <Title> Editar contacto </Title> </Box>
               </Flex>
             </Flex>
 

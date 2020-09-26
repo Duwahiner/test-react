@@ -104,7 +104,7 @@ const ModalUserRemove = ({ show, setShow, filterUser, handleRemoveUser }) => {
           >
             <Flex flex='none'>
               <Flex ml={[3]} flexDirection='row' justifyContent='center' alignItems='center'>
-                <Box mr={10}> <Title> Eliminar nuevo contacto </Title> </Box>
+                <Box mr={10}> <Title> Eliminar contacto </Title> </Box>
               </Flex>
             </Flex>
 
