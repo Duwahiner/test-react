@@ -152,7 +152,7 @@ const ModalUser = ({
                       opacity: '0.6'
                     }}
                   >
-                    <Description fontFamily='AeonikBold' textSize='25px'> {split('Duwahiner Moreco Cuesta')} </Description>
+                    <Description fontFamily='AeonikBold' textSize='25px'> {split(user.name)} </Description>
                   </Box>
                 </Flex>
               </Flex>
