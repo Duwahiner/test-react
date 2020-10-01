@@ -74,7 +74,7 @@ const Users = ({ show, setShow, user, setFilterUser }) => {
 
     >
       {
-        getDataUsers.length > 1 ? (
+        getDataUsers.length > 0 ? (
           user.map((user, index) =>
             <Box
               width={['280px', '320px', '360px']}
@@ -160,7 +160,7 @@ const Users = ({ show, setShow, user, setFilterUser }) => {
               </Flex>
             </Box>
           )
-        ) : <Description> Lo sentimos ahora mismo no hay datos </Description>
+        ) : <Flex mt={30} width={1} bg='' justifyContent='center'> Lo sentimos ahora mismo no hay datos </Flex>
       }
     </Flex>
   )
