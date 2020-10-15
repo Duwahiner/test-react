@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, memo } from 'react'
+import { animated } from 'react-spring'
+import styled from '@emotion/styled'
 import Head from 'next/head'
 import { Flex } from 'rebass'
 import ModalUser from '../ModalUser'
@@ -7,8 +9,16 @@ import ModalUserEdit from '../ModalUserEdit'
 import ModalUserRemove from '../ModalUserRemove'
 import Users from '../Users'
 import { getUser, postUser, putUser, deleteUser } from '../../api'
+import { transitions } from '../../util/animated'
 
-const PageHome = (props) => {
+const Modal = styled(animated(Flex))`
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  justify-content: center;
+`
+
+const PageHome = memo((props) => {
   const [miUser, setMiUser] = useState([])
   const [show, setShow] = useState(false)
   const [showCreate, setShowCreate] = useState(false)
@@ -85,43 +95,68 @@ const PageHome = (props) => {
         <title> Inicio </title>
       </Head>
       <Users user={miUser} setShow={setShow} show={show} setFilterUser={setFilterUser} />
-      {show && (
-        <ModalUser
-          setShow={setShow}
-          show={show}
-          setShowCreate={setShowCreate}
-          showCreate={showCreate}
-          setShowEdit={setShowEdit}
-          showEdit={showEdit}
-          setShowRemove={setShowRemove}
-          showRemove={showRemove}
-          filterUser={filterUser}
-          setFilterUser={setFilterUser}
+      {
+        transitions(show, 700).map(({ item, key, props }) =>
+          item && (
+            <Modal key={key} style={props}>
+              <ModalUser
+                setShow={setShow}
+                show={show}
+                setShowCreate={setShowCreate}
+                showCreate={showCreate}
+                setShowEdit={setShowEdit}
+                showEdit={showEdit}
+                setShowRemove={setShowRemove}
+                showRemove={showRemove}
+                filterUser={filterUser}
+                setFilterUser={setFilterUser}
+              />
+            </Modal>
+          )
+        )
+      }
 
-        />)}
-      {showCreate && (
-        <ModalUserCreate
-          setShow={setShowCreate}
-          show={showCreate}
-          filterUser={filterUser}
-          handleCreateUser={handleCreateUser}
-        />)}
-      {showEdit && (
-        <ModalUserEdit
-          setShow={setShowEdit}
-          show={showEdit}
-          filterUser={filterUser}
-          handleUpdateUser={handleUpdateUser}
-        />)}
-      {showRemove && (
-        <ModalUserRemove
-          setShow={setShowRemove}
-          show={showRemove}
-          filterUser={filterUser}
-          handleRemoveUser={handleRemoveUser}
-        />)}
+      {
+        showCreate && (
+          <ModalUserCreate
+            setShow={setShowCreate}
+            show={showCreate}
+            filterUser={filterUser}
+            handleCreateUser={handleCreateUser}
+          />)
+      }
+
+      {
+        transitions(showEdit).map(({ item, key, props }) =>
+          item && (
+            <Modal key={key} style={props}>
+              <ModalUserEdit
+                setShow={setShowEdit}
+                show={showEdit}
+                filterUser={filterUser}
+                handleUpdateUser={handleUpdateUser}
+              />
+            </Modal>
+          )
+        )
+      }
+
+      {
+        transitions(showRemove).map(({ item, key, props }) =>
+          item && (
+            <Modal key={key} style={props}>
+              <ModalUserRemove
+                setShow={setShowRemove}
+                show={showRemove}
+                filterUser={filterUser}
+                handleRemoveUser={handleRemoveUser}
+              />
+            </Modal>
+          )
+        )
+      }
     </Flex>
   )
-}
+})
 
 export default PageHome

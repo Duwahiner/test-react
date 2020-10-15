@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
+import { animated } from 'react-spring'
 import { Flex, Box } from 'rebass'
 import styled from '@emotion/styled'
 import { useTheme } from 'emotion-theming'
 import { ReactSVG } from 'react-svg'
 import { v1 as createID } from 'uuid'
+import { transitions } from '../../util/animated'
+
+const Container = animated(Flex)
 
 const Title = styled.h1`
   font-family: AeonikBlack;
@@ -97,6 +101,7 @@ const InputText = styled.input`
 `
 const ModalUserCreate = ({ show, setShow, filterUser, handleCreateUser }) => {
   const theme = useTheme()
+
   const [user, setUser] = useState(Object.assign({}, {
     name: '',
     email: '',
@@ -110,117 +115,122 @@ const ModalUserCreate = ({ show, setShow, filterUser, handleCreateUser }) => {
     setUser({ ...user, [key]: value })
   }
 
-  return (
-    <Flex
-      sx={{
-        width: '100%',
-        height: '100vh',
-        backgroundColor: `${theme.colors.backgroundModalSecondary}`,
-        position: 'absolute',
-        zIndex: '100'
-      }}
-      justifyContent='center'
-      alignItems='center'
-    >
-      <Flex
-        width={['300px', '400px', '500px']}
-        minHeight={['auto', '300px', '300px']}
-        justifyContent=''
-        bg={theme.colors.background}
-        height={['auto', 'uato', 'auto']}
-        py={[10, 20]}
-        px={[10, 20]}
+  return transitions(null, 700).map(({ item, key, props }) =>
+    (
+      <Container
         sx={{
+          width: '100%',
+          height: '100vh',
+          backgroundColor: `${theme.colors.backgroundModalSecondary}`,
           position: 'absolute',
-          borderRadius: '15px',
-          overflow: 'hidden',
-          boxSizing: 'border-box'
+          zIndex: '100'
         }}
-        br=''
+        justifyContent='center'
+        alignItems='center'
+        style={props}
+        key={key}
       >
-        <Flex width={1} flexDirection='column' justifyContent='' alignItems=''>
-          <Flex
-            flex='none'
-            width={1}
-            bg=''
-            height='50px'
-            flexDirection={['row', 'row']}
-            justifyContent={['space-between']}
-            alignItems='center'
-          >
-            <Flex flex='none'>
-              <Flex ml={[3]} flexDirection='row' justifyContent='center' alignItems='center'>
-                <Box mr={10}> <Title> Craar nuevo contacto </Title> </Box>
-              </Flex>
-            </Flex>
-
-            <ButtonSecondary
-              onClick={() => setShow(!show)}
+        <Flex
+          width={['300px', '400px', '500px']}
+          minHeight={['auto', '300px', '300px']}
+          justifyContent=''
+          bg={theme.colors.background}
+          height={['auto', 'uato', 'auto']}
+          py={[10, 20]}
+          px={[10, 20]}
+          sx={{
+            position: 'absolute',
+            borderRadius: '15px',
+            overflow: 'hidden',
+            boxSizing: 'border-box'
+          }}
+          br=''
+        >
+          <Flex width={1} flexDirection='column' justifyContent='' alignItems=''>
+            <Flex
+              flex='none'
+              width={1}
+              bg=''
+              height='50px'
+              flexDirection={['row', 'row']}
+              justifyContent={['space-between']}
+              alignItems='center'
             >
-              <Box width='17px' height='17px'> <ReactSVG src='svg/icon-cerrar.svg' /></Box>
-            </ButtonSecondary>
-          </Flex>
+              <Flex flex='none'>
+                <Flex ml={[3]} flexDirection='row' justifyContent='center' alignItems='center'>
+                  <Box mr={10}> <Title> Craar nuevo contacto </Title> </Box>
+                </Flex>
+              </Flex>
 
-          <Flex
-            flex='auto'
-            width={1}
-            bg=''
-            height='auto'
-            justifyContent='center'
-            alignItems='center'
-            flexDirection='column'
-            py={4}
-          >
-            <Box width={1 / 1.4}>
-              <InputText
-                type='text'
-                name='name'
-                placeholder='Nombre completo'
-                onChange={(event) => handleOnChange(event)}
-              />
-            </Box>
-            <Box width={1 / 1.4}>
-              <InputText
-                type='email'
-                name='email'
-                placeholder='Correo'
-                onChange={(event) => handleOnChange(event)}
-              />
-            </Box>
-            <Box width={1 / 1.4}>
-              <InputText
-                type='tel'
-                name='phone'
-                placeholder='Movil'
-                onChange={(event) => handleOnChange(event)}
-              />
-            </Box>
-          </Flex>
-
-          <Flex flex='none' width={1} bg='' height='auto'>
-            <Flex flex='auto' justifyContent='center' alignItems={['center']} flexDirection={['column', 'row']}>
-              <Button
+              <ButtonSecondary
                 onClick={() => {
-                  if (user.name !== '' && user.email !== '' && user.phone !== '') {
-                    handleCreateUser(user)
-                  }
+                  setShow(!show)
                 }}
               >
-                <Box mr='6px'> Listo </Box>
-              </Button>
-
-              <Button
-                onClick={() => setShow(!show)}
-              >
-                <Box mr='6px'> Cancelar </Box>
-              </Button>
+                <Box width='17px' height='17px'> <ReactSVG src='svg/icon-cerrar.svg' /></Box>
+              </ButtonSecondary>
             </Flex>
 
+            <Flex
+              flex='auto'
+              width={1}
+              bg=''
+              height='auto'
+              justifyContent='center'
+              alignItems='center'
+              flexDirection='column'
+              py={4}
+            >
+              <Box width={1 / 1.4}>
+                <InputText
+                  type='text'
+                  name='name'
+                  placeholder='Nombre completo'
+                  onChange={(event) => handleOnChange(event)}
+                />
+              </Box>
+              <Box width={1 / 1.4}>
+                <InputText
+                  type='email'
+                  name='email'
+                  placeholder='Correo'
+                  onChange={(event) => handleOnChange(event)}
+                />
+              </Box>
+              <Box width={1 / 1.4}>
+                <InputText
+                  type='tel'
+                  name='phone'
+                  placeholder='Movil'
+                  onChange={(event) => handleOnChange(event)}
+                />
+              </Box>
+            </Flex>
+
+            <Flex flex='none' width={1} bg='' height='auto'>
+              <Flex flex='auto' justifyContent='center' alignItems={['center']} flexDirection={['column', 'row']}>
+                <Button
+                  onClick={() => {
+                    if (user.name !== '' && user.email !== '' && user.phone !== '') {
+                      handleCreateUser(user)
+                    }
+                  }}
+                >
+                  <Box mr='6px'> Listo </Box>
+                </Button>
+
+                <Button
+                  onClick={() => setShow(!show)}
+                >
+                  <Box mr='6px'> Cancelar </Box>
+                </Button>
+              </Flex>
+
+            </Flex>
           </Flex>
         </Flex>
-      </Flex>
-    </Flex>
-  )
+      </Container>
+    ))
 }
 
 export default ModalUserCreate
